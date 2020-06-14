@@ -13,27 +13,26 @@ import javax.servlet.http.HttpSession;
 import kr.co.board.db.BoardDAO;
 import kr.co.board.model.UserVO;
 
-@WebServlet("/board/list")
-public class ListSer extends HttpServlet {
+@WebServlet("/board/detail")
+public class BoardDetailSer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession hs = request.getSession();
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	String pk = request.getParameter("pk");
+    	HttpSession hs = request.getSession();
 		UserVO loginUser = (UserVO)hs.getAttribute("loginUser");
-		if(loginUser ==null) {
+		if(loginUser ==null || pk==null) {
 			response.sendRedirect("/login.do");
 			return;
 		}
 		
-		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/board/boardList.jsp");
-		
-		request.setAttribute("list", BoardDAO.getList());
+		int intPk = Integer.parseInt(pk);
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/board/detail.jsp");
+		request.setAttribute("one", BoardDAO.getOne(intPk));
 		
 		rd.forward(request, response);
 	}
 
-
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}

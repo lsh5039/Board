@@ -10,13 +10,22 @@
 </style>
 </head>
 <body>
+	<p>${loginUser.name }님 안녕하세요</p>
 	<h2>글 작성</h2>
 	<form action="/write" method="post" id="frm" onsubmit="return chk()">
 		<div><input type="text" name="title" placeholder="제목"></div>
 		<div><textarea rows="10" cols="22" name="content" placeholder="내용"></textarea></div>	
+		<div><input type="hidden" value="${loginUser.pk }" name="user_pk"></div>
 		<div><input type="submit" value="글작성"></div>
 	</form>
 	<p class="msg" id="msg">${msg }</p>
+	
+	<p>id : ${loginUser.id }</p>
+	<p>pw : ${loginUser.pw }</p>
+	<p>name : ${loginUser.name }</p>
+	<p>pk : ${loginUser.pk }</p>
+	
+	
 	
 	
 	<script>

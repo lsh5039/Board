@@ -33,7 +33,7 @@ public class JoinSer extends HttpServlet {
 		vo.setName(name);
 		int result = UserDAO.doJoin(vo);
 		if(result == 1)
-			response.sendRedirect("/index");
+			response.sendRedirect("/login.do");
 		else {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/user/join.jsp");
 			request.setAttribute("msg","아이디가 중복됐습니다.");

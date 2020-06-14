@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import javax.servlet.http.HttpSession;
+
 import kr.co.board.model.UserVO;
 
 public class UserDAO {
@@ -32,19 +34,27 @@ public class UserDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		String sql =" select * from user where id = ? and pw = ?";
+		String sql =" select * from user where id = ?";
 		
 		try {
 			con = Conn.getCon();//db연결
 			ps = con.prepareStatement(sql);//쿼리실행
 			ps.setString(1, param.getId());
-			ps.setString(2, param.getPw());
+			
 			rs = ps.executeQuery();//쿼리문이 실행한 결과리턴(객체, 투플, 한 줄)
 			
-			if(rs.next()) {
-				result = 1;//로그인 성공
+			if(rs.next()) {//아이디는 일단 일치하는것이 있다.
+				if(param.getPw().equals(rs.getString("pw"))) {
+					result = 1;//로그인 성공
+					param.setName(rs.getString("name"));
+					param.setPk(rs.getInt("pk"));
+					param.setPw(null);
+				}else {
+					result = -2;//아이디는 있으나 비밀번호는 일치하지않음(id, pw) 불일치
+				}
+			
 			}else {
-				result = -1;//로그인 실패
+				result = -1;//아이디가 존재하지 않음
 			}
 			
 		}catch(Exception e) {

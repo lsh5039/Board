@@ -22,22 +22,29 @@
 		<tr>
 			<th>게시번호</th>
 			<th>제목</th>
-			<th>내용</th>
+			
 			<th>조회수</th>
 		</tr>
 		
 		
 		<c:forEach items="${list }" var="vo">
-		<tr>
+		<tr onclick="goDetail(${vo.pk })">
 			<td>${vo.pk }</td>
 			<td>${vo.title }</td>
-			<td>${vo.content }</td>
+			
 			<td>${vo.hits }</td>
 		</tr>
 		
 		</c:forEach>
-	
 	</table>
+	
+	<script>
+		function goDetail(pk){
+			location.href="/board/detail?pk="+pk;//js에서 get방식으로 보내기!
+		}
+	
+	</script>
+	
 
 </body>
 </html>

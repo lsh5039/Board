@@ -6,8 +6,25 @@ public class BoardVO {
 	private String title;
 	private String content;
 	private String hits;
+	private int user_pk;
+	private String name;
 	
 	
+	
+	
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getUser_pk() {
+		return user_pk;
+	}
+	public void setUser_pk(int user_pk) {
+		this.user_pk = user_pk;
+	}
 	public String getHits() {
 		return hits;
 	}
