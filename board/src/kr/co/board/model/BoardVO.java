@@ -8,11 +8,18 @@ public class BoardVO {
 	private String hits;
 	private int user_pk;
 	private String name;
+	private String com_content;
 	
 	
 	
 	
 	
+	public String getCom_content() {
+		return com_content;
+	}
+	public void setCom_content(String com_content) {
+		this.com_content = com_content;
+	}
 	public String getName() {
 		return name;
 	}

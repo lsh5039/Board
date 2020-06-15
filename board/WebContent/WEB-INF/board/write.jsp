@@ -20,12 +20,8 @@
 	</form>
 	<p class="msg" id="msg">${msg }</p>
 	
-	<p>id : ${loginUser.id }</p>
-	<p>pw : ${loginUser.pw }</p>
-	<p>name : ${loginUser.name }</p>
-	<p>pk : ${loginUser.pk }</p>
-	
-	
+
+	<a href="/board/list">게시판</a>
 	
 	
 	<script>

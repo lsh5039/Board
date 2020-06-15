@@ -37,6 +37,7 @@
 		
 		</c:forEach>
 	</table>
+	<a href="/write">글 쓰기</a>
 	
 	<script>
 		function goDetail(pk){
